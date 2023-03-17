@@ -30,9 +30,6 @@ class ElectionMonitor:
             tweets = self.client.search_recent_tweets(query=keyword, max_results=100)
             print('tweet generated')
             for tweet in tweets.data:
-                print(tweet)
-                print(tweet.author_id)
-                # print(tweet.author)
                 if 'RT @' not in tweet.text and tweet.id not in self.retweeted_tweets:
                     self.client.retweet(tweet.id, user_auth=False)
                     self.retweeted_tweets.add(tweet.id)
