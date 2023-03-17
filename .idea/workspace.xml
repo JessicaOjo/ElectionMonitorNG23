@@ -10,7 +10,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ChangesViewManager">
+  <component name="ChangesViewManager" show_ignored="true">
     <option name="groupingKeys">
       <option value="repository" />
       <option value="directory" />
