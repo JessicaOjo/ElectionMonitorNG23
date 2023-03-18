@@ -64,14 +64,14 @@ class ElectionMonitor:
 
 
 if __name__ == '__main__':
-    scheduler = BackgroundScheduler()
+    scheduler = BackgroundScheduler(job_defaults={'max_instances': 2, 'misfire_grace_time': 5})
     election_monitor = ElectionMonitor()
     scheduler.add_job(election_monitor.monitor, 'interval', minutes=30)
-    scheduler.add_job(election_monitor.refresh_token, 'interval', hours=1, minutes=55)
+    scheduler.add_job(election_monitor.refresh_token, 'interval', hours=1, minutes=30)
     scheduler.start()
 
     try:
         while True:
-            time.sleep(1700)
+            time.sleep(1799)
     except KeyboardInterrupt:
         scheduler.shutdown()
