@@ -27,7 +27,8 @@ class ElectionMonitor:
     def monitor(self):
         for keyword in self.keywords:
             print('Generating tweets')
-            tweets = self.client.search_recent_tweets(query=keyword, max_results=100)
+            query = f'{keyword} -is:reply -is:retweet -is:quote'
+            tweets = self.client.search_recent_tweets(query=query, max_results=100)
             print('tweet generated')
             for tweet in tweets.data:
                 if 'RT @' not in tweet.text and tweet.id not in self.retweeted_tweets:
@@ -36,9 +37,9 @@ class ElectionMonitor:
                     print('Retweeted:', tweet.id)
                     time.sleep(10)
 
-            # Save the updated list of retweeted ids
-            with open('retweeted_tweets.txt', 'w') as f:
-                f.write('\n'.join(str(tweet_id) for tweet_id in self.retweeted_tweets))
+        # Save the updated list of retweeted ids
+        with open('retweeted_tweets.txt', 'w') as f:
+            f.write('\n'.join(str(tweet_id) for tweet_id in self.retweeted_tweets))
 
 
 if __name__ == '__main__':

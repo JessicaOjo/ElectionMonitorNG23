@@ -2,7 +2,6 @@ import os
 import time
 import dotenv
 import tweepy as tp
-from apscheduler.schedulers.blocking import BlockingScheduler
 from apscheduler.schedulers.background import BackgroundScheduler
 
 dotenv_file = dotenv.find_dotenv()
@@ -37,8 +36,7 @@ if __name__ == '__main__':
     print(os.getenv("REFRESH_TOKEN"))
 
     try:
-        # This is here to simulate application activity (which keeps the main thread alive).
         while True:
-            time.sleep(9000)
+            time.sleep(5400)
     except KeyboardInterrupt:
         scheduler.shutdown()
